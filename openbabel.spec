@@ -1,12 +1,12 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	1.100.1
-Release:	2
+Version:	1.100.2
+Release:	1
 License:	GPL v2
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	06ed9032ebaece0883420bd403c45215
+# Source0-md5:	03de74acaadc4beb651f96485169ec65
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -27,7 +27,7 @@ i chemii obliczeniowej.
 Summary:	Header files for OpenBabel
 Summary(pl):	Pliki nag³ówkowe dla OpenBabel
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for OpenBabel.
@@ -39,7 +39,7 @@ Pliki nag³ówkowe dla OpenBabel.
 Summary:	Static OpenBabel library
 Summary(pl):	Statyczna biblioteka OpenBabel
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static OpenBabel library.
@@ -55,7 +55,6 @@ Statyczna biblioteka OpenBabel.
 	--enable-shared
 
 %{__make}
-#%%{__make} test
 
 %install
 rm -rf $RPM_BUILD_ROOT
