@@ -1,0 +1,30 @@
+--- ./src/Makefile.in.org	Wed Jan 30 20:52:20 2002
++++ ./src/Makefile.in	Sat Sep  7 05:34:27 2002
+@@ -77,10 +77,11 @@
+ 		$(RM) version.h
+ 
+ install:	$(PROGRAM)
+-		$(INSTALL) -d $(DEST)
+-		$(INSTALL) $(PROGRAM) $(DEST)
+-		$(INSTALL) -d $(pkgdatadir)
+-		(cd $(srcdir); $(INSTALL) -m644 $(DATAFILES) $(pkgdatadir))
++		$(INSTALL) -d $(DESTDIR)$(DEST)
++		$(INSTALL) $(PROGRAM) $(DESTDIR)$(DEST)
++		$(INSTALL) -d $(DESTDIR)$(pkgdatadir)
++		cd $(srcdir)
++			$(INSTALL) -m644 $(DATAFILES) $(DESTDIR)$(pkgdatadir)
+ 
+ print:;		$(PRINT) $(HDRS) $(SRCS)
+ 
+--- ./Makefile.in.org	Wed Jan 30 20:52:20 2002
++++ ./Makefile.in	Sat Sep  7 05:31:49 2002
+@@ -46,7 +46,8 @@
+ 
+ install:	all
+ 		(cd src; $(MAKE) $(MFLAGS) install)
+-		$(INSTALL) doc/babel.1 $(mandir)
++		$(INSTALL) -d $(DESTDIR)$(mandir)
++		$(INSTALL) doc/babel.1 $(DESTDIR)$(mandir)
+ 
+ dist:		distclean
+ 	        rm -rf $(DISTDIR) openbabel.tar.gz
