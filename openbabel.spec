@@ -4,7 +4,7 @@ Name:		openbabel
 Version:	1.100.2
 Release:	1
 License:	GPL v2
-Group:		X11/Libraries
+Group:		Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	03de74acaadc4beb651f96485169ec65
 URL:		http://openbabel.sourceforge.net/
@@ -26,7 +26,7 @@ i chemii obliczeniowej.
 %package devel
 Summary:	Header files for OpenBabel
 Summary(pl):	Pliki nag³ówkowe dla OpenBabel
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -38,7 +38,7 @@ Pliki nag³ówkowe dla OpenBabel.
 %package static
 Summary:	Static OpenBabel library
 Summary(pl):	Statyczna biblioteka OpenBabel
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
