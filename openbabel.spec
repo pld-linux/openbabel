@@ -2,7 +2,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	1.100.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -59,10 +59,13 @@ Statyczna biblioteka OpenBabel.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/openbabel}
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/openbabel/math}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install src/math/{matrix3x3,vector3}.h \
+	$RPM_BUILD_ROOT%{_includedir}/openbabel/math
 
 %clean
 rm -rf $RPM_BUILD_ROOT
