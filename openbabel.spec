@@ -1,13 +1,12 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	1.99
-Release:	3
+Version:	1.100.0
+Release:	1
 License:	GPL v2
 Group:		X11/Libraries
+# Source0-md5:	6001013ebb0c4eca28e56a5d777bea39
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	f6746bf54d7ef67e0335a125e04b01b2
-Patch0:		%{name}-DESTDIR.patch
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -40,7 +39,6 @@ Pliki nag³ówkowe dla OpenBabel.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.* .
