@@ -20,7 +20,7 @@ chemistry.
 %description -l pl
 Open Babel to projekt maj±cy pozbieraæ to, co zosta³o po zaniechaniu
 projektu Babel, jako miêdzyplatformowy program i biblioteka s³u¿±ce do
-konwersji miêdzy wielona formatami u¿ywanymi w modelowaniu cz±steczek
+konwersji miêdzy wieloma formatami u¿ywanymi w modelowaniu cz±steczek
 i chemii obliczeniowej.
 
 %package devel
