@@ -6,6 +6,7 @@ Release:	3
 License:	GPL v2
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	f6746bf54d7ef67e0335a125e04b01b2
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	autoconf
