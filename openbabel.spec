@@ -8,8 +8,7 @@ Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	06ed9032ebaece0883420bd403c45215
 URL:		http://openbabel.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,8 +27,7 @@ i chemii obliczeniowej.
 Summary:	Header files for OpenBabel
 Summary(pl):	Pliki nag³ówkowe dla OpenBabel
 Group:		X11/Development/Libraries
-# static only library, so no R necessary
-#Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 Header files for OpenBabel.
@@ -37,13 +35,24 @@ Header files for OpenBabel.
 %description devel -l pl
 Pliki nag³ówkowe dla OpenBabel.
 
+%package static
+Summary:	Static OpenBabel library
+Summary(pl):	Statyczna biblioteka OpenBabel
+Group:		X11/Development/Libraries
+Requires:	%{name}-devel = %{version}
+
+%description static
+Static OpenBabel library.
+
+%description static -l pl
+Statyczna biblioteka OpenBabel.
+
 %prep
 %setup -q
 
 %build
-cp -f /usr/share/automake/config.* .
-%{__autoconf}
-%configure
+%configure \
+	--enable-shared
 
 %{__make}
 #%%{__make} test
@@ -55,22 +64,28 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/openbabel}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install src/.libs/libopenbabel.a $RPM_BUILD_ROOT%{_libdir}
-install src/*.h $RPM_BUILD_ROOT%{_includedir}/openbabel
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/*.html
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %dir %{_datadir}/openbabel
 %attr(755,root,root) %{_datadir}/openbabel/*.txt
 %{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libopenbabel.so
+%{_libdir}/libopenbabel.la
+%{_includedir}/openbabel
+%{_pkgconfigdir}/*.pc
+
+%files static
+%defattr(644,root,root,755)
 %{_libdir}/libopenbabel.a
-%dir %{_includedir}/openbabel
-%{_includedir}/openbabel/*.h
