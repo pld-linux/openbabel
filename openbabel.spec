@@ -67,6 +67,8 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/openbabel/math}
 install src/math/{matrix3x3,vector3}.h \
 	$RPM_BUILD_ROOT%{_includedir}/openbabel/math
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/openbabel/*.{la,a}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -79,6 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
+%dir %{_libdir}/openbabel
 %attr(755,root,root) %{_libdir}/openbabel/*.so
 %dir %{_datadir}/openbabel
 %attr(755,root,root) %{_datadir}/openbabel/%{version}/*.txt
@@ -89,7 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libopenbabel.so
 %{_libdir}/libopenbabel.la
 %{_libdir}/*.la
-%{_libdir}/openbabel/*.la
 %{_includedir}/openbabel
 %{_includedir}/inchi
 %{_includedir}/openbabel-2.0
@@ -99,4 +101,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libopenbabel.a
 %{_libdir}/libinchi.a
-%{_libdir}/openbabel/*.a
