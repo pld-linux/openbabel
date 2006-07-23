@@ -1,12 +1,12 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.0.0
+Version:	2.0.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	3bddfa9188042e2518eb53c064279b4e
+# Source0-md5:	843a8d46c56a204cf20500b29b5a79cc
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,13 +59,9 @@ Statyczna biblioteka OpenBabel.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir}/openbabel/math}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install src/math/{matrix3x3,vector3}.h \
-	$RPM_BUILD_ROOT%{_includedir}/openbabel/math
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/openbabel/*.{la,a}
 
@@ -79,25 +75,24 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/*.html
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
+%attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %dir %{_libdir}/openbabel
 %attr(755,root,root) %{_libdir}/openbabel/*.so
-%dir %{_datadir}/openbabel
-%attr(755,root,root) %{_datadir}/openbabel/%{version}/*.txt
+%{_datadir}/openbabel
 %{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libinchi.so
 %attr(755,root,root) %{_libdir}/libopenbabel.so
+%{_libdir}/libinchi.la
 %{_libdir}/libopenbabel.la
-%{_libdir}/*.la
-%{_includedir}/openbabel
 %{_includedir}/inchi
 %{_includedir}/openbabel-2.0
 %{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libopenbabel.a
 %{_libdir}/libinchi.a
+%{_libdir}/libopenbabel.a
