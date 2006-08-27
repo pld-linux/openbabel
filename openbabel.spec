@@ -1,14 +1,16 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.0.1
+Version:	2.0.2
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	843a8d46c56a204cf20500b29b5a79cc
+# Source0-md5:	1cb8d4a99482d2d109887a099d1a719e
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	libstdc++-devel
+BuildRequires:	libxml2-devel >= 2.6.5
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -29,6 +31,7 @@ Summary(pl):	Pliki nag³ówkowe dla OpenBabel
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
+Requires:	zlib-devel
 
 %description devel
 Header files for OpenBabel.
@@ -52,7 +55,12 @@ Statyczna biblioteka OpenBabel.
 %setup -q
 
 %build
+# simulate there is no libinchi installed (if openbabel is already installed),
+# so it will be build with openbabel
+# inchi is available separately at http://www.iupac.org/inchi/, but requires
+# registration to download
 %configure \
+	ac_cv_lib_inchi_GetINCHI=no \
 	--enable-shared
 
 %{__make}
