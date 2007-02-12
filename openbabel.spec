@@ -1,5 +1,5 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
-Summary(pl):	Miêdzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
+Summary(pl.UTF-8):   MiÄ™dzyplatformowy program chemiczny i biblioteka do konwersji formatÃ³w plikÃ³w
 Name:		openbabel
 Version:	2.0.2
 Release:	1
@@ -19,15 +19,15 @@ cross-platform program and library designed to interconvert between
 many file formats used in molecular modeling and computational
 chemistry.
 
-%description -l pl
-Open Babel to projekt maj±cy pozbieraæ to, co zosta³o po zaniechaniu
-projektu Babel, jako miêdzyplatformowy program i biblioteka s³u¿±ce do
-konwersji miêdzy wieloma formatami u¿ywanymi w modelowaniu cz±steczek
+%description -l pl.UTF-8
+Open Babel to projekt majÄ…cy pozbieraÄ‡ to, co zostaÅ‚o po zaniechaniu
+projektu Babel, jako miÄ™dzyplatformowy program i biblioteka sÅ‚uÅ¼Ä…ce do
+konwersji miÄ™dzy wieloma formatami uÅ¼ywanymi w modelowaniu czÄ…steczek
 i chemii obliczeniowej.
 
 %package devel
 Summary:	Header files for OpenBabel
-Summary(pl):	Pliki nag³ówkowe dla OpenBabel
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla OpenBabel
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -36,19 +36,19 @@ Requires:	zlib-devel
 %description devel
 Header files for OpenBabel.
 
-%description devel -l pl
-Pliki nag³ówkowe dla OpenBabel.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe dla OpenBabel.
 
 %package static
 Summary:	Static OpenBabel library
-Summary(pl):	Statyczna biblioteka OpenBabel
+Summary(pl.UTF-8):   Statyczna biblioteka OpenBabel
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static OpenBabel library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka OpenBabel.
 
 %prep
