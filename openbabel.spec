@@ -1,5 +1,5 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
-Summary(pl.UTF-8):   Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
+Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.0.2
 Release:	1
@@ -27,7 +27,7 @@ i chemii obliczeniowej.
 
 %package devel
 Summary:	Header files for OpenBabel
-Summary(pl.UTF-8):   Pliki nagłówkowe dla OpenBabel
+Summary(pl.UTF-8):	Pliki nagłówkowe dla OpenBabel
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -41,7 +41,7 @@ Pliki nagłówkowe dla OpenBabel.
 
 %package static
 Summary:	Static OpenBabel library
-Summary(pl.UTF-8):   Statyczna biblioteka OpenBabel
+Summary(pl.UTF-8):	Statyczna biblioteka OpenBabel
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
