@@ -1,12 +1,12 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.0.2
+Version:	2.1.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	1cb8d4a99482d2d109887a099d1a719e
+# Source0-md5:	a2a002c6913d6fb94fdc7dede2166194
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
@@ -84,7 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README THANKS doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
+%attr(755,root,root) %{_libdir}/libinchi.so.?
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
+%attr(755,root,root) %{_libdir}/libopenbabel.so.?
 %dir %{_libdir}/openbabel
 %attr(755,root,root) %{_libdir}/openbabel/*.so
 %{_datadir}/openbabel
