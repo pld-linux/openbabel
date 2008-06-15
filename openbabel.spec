@@ -84,9 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README THANKS doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
-%attr(755,root,root) %{_libdir}/libinchi.so.?
+%attr(755,root,root) %ghost %{_libdir}/libinchi.so.?
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
-%attr(755,root,root) %{_libdir}/libopenbabel.so.?
+%attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.?
 %dir %{_libdir}/openbabel
 %attr(755,root,root) %{_libdir}/openbabel/*.so
 %{_datadir}/openbabel
