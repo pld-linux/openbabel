@@ -2,7 +2,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
@@ -61,7 +61,8 @@ Statyczna biblioteka OpenBabel.
 # registration to download
 %configure \
 	ac_cv_lib_inchi_GetINCHI=no \
-	--enable-shared
+	--enable-shared \
+	--enable-static
 
 %{__make}
 
@@ -71,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/openbabel/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/openbabel/*/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -94,14 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenbabel.so
-%{_libdir}/openbabel/2.2.0/*.la
 %{_libdir}/libopenbabel.la
 %dir %{_includedir}/inchi
 %{_includedir}/inchi/inchi_api.h
 %{_includedir}/openbabel-2.0
 %{_pkgconfigdir}/*.pc
 
-#%files static
-#%defattr(644,root,root,755)
-#%{_libdir}/libinchi.a
-#%{_libdir}/libopenbabel.a
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libopenbabel.a
