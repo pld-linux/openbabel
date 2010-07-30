@@ -1,12 +1,12 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.2.0
-Release:	2
+Version:	2.2.2
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	643a18c7ba09254d36e93afd6277346f
+# Source0-md5:	0d9c12c500749df7269f9e7ac742e94a
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
@@ -87,8 +87,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.?
 %dir %{_libdir}/openbabel
-%dir %{_libdir}/openbabel/2.2.0
-%attr(755,root,root) %{_libdir}/openbabel/2.2.0/*.so
+%dir %{_libdir}/openbabel/2.2.2
+%attr(755,root,root) %{_libdir}/openbabel/2.2.2/*.so
 %{_datadir}/openbabel
 %{_mandir}/man1/*.1*
 
@@ -96,8 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libopenbabel.so
 %{_libdir}/libopenbabel.la
-%dir %{_includedir}/inchi
-%{_includedir}/inchi/inchi_api.h
+%{_includedir}/inchi102
 %{_includedir}/openbabel-2.0
 %{_pkgconfigdir}/*.pc
 
