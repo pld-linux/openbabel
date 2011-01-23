@@ -48,6 +48,18 @@ Header files for OpenBabel.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla OpenBabel.
 
+%package -n perl-Chemistry-OpenBabel
+Summary:	Perl binding for OpenBabel
+Summary(pl.UTF-8):	Wiązanie Perla do biblioteki OpenBabel
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}-%{release}
+
+%description -n perl-Chemistry-OpenBabel
+Perl binding for OpenBabel.
+
+%description -n perl-Chemistry-OpenBabel -l pl.UTF-8
+Wiązanie Perla do biblioteki OpenBabel.
+
 %prep
 %setup -q
 %patch0 -p1
