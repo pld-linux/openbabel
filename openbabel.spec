@@ -17,6 +17,7 @@ BuildRequires:	cmake >= 2.4.8
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
 BuildRequires:	perl-devel
+BuildRequires:	rpmbuild(macros) >= 1.577
 #BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
