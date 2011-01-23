@@ -1,15 +1,23 @@
+# TODO:
+# - eigen2
+# - wxWidgets (cmake needs hacking to use wx-gtk2-unicode-config instead of wx-config)
+# - install+package python, ruby, java, csharp bindings
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.2.2
-Release:	1
+Version:	2.3.0
+Release:	0.1
 License:	GPL v2
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	0d9c12c500749df7269f9e7ac742e94a
+Source0:	http://downloads.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
+# Source0-md5:	effda01ed4a31d18d8e3d08191799608
+Patch0:		%{name}-ruby.patch
 URL:		http://openbabel.sourceforge.net/
+BuildRequires:	cmake >= 2.4.8
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
+BuildRequires:	perl-devel
+#BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,6 +40,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
 Requires:	zlib-devel
+Obsoletes:	openbabel-static
 
 %description devel
 Header files for OpenBabel.
@@ -39,31 +48,15 @@ Header files for OpenBabel.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla OpenBabel.
 
-%package static
-Summary:	Static OpenBabel library
-Summary(pl.UTF-8):	Statyczna biblioteka OpenBabel
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static OpenBabel library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka OpenBabel.
-
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-# simulate there is no libinchi installed (if openbabel is already installed),
-# so it will be build with openbabel
-# inchi is available separately at http://www.iupac.org/inchi/, but requires
-# registration to download
-%configure \
-	ac_cv_lib_inchi_GetINCHI=no \
-	--enable-shared \
-	--enable-static
-
+%cmake . \
+	-DALL_BINDINGS=ON \
+	-DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
+	-DwxWIDGETS_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
 
 %install
@@ -71,8 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-rm -f $RPM_BUILD_ROOT%{_libdir}/openbabel/*/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,23 +74,55 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/*.html
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/babel
+%attr(755,root,root) %{_bindir}/obabel
+%attr(755,root,root) %{_bindir}/obchiral
+%attr(755,root,root) %{_bindir}/obconformer
+%attr(755,root,root) %{_bindir}/obenergy
+%attr(755,root,root) %{_bindir}/obfit
+%attr(755,root,root) %{_bindir}/obgen
+%attr(755,root,root) %{_bindir}/obgrep
+%attr(755,root,root) %{_bindir}/obminimize
+%attr(755,root,root) %{_bindir}/obprobe
+%attr(755,root,root) %{_bindir}/obprop
+%attr(755,root,root) %{_bindir}/obrotamer
+%attr(755,root,root) %{_bindir}/obrotate
+%attr(755,root,root) %{_bindir}/obspectrophore
+%attr(755,root,root) %{_bindir}/roundtrip
+%attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libinchi.so.0
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.?
+%attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.4
 %dir %{_libdir}/openbabel
-%dir %{_libdir}/openbabel/2.2.2
-%attr(755,root,root) %{_libdir}/openbabel/2.2.2/*.so
+%dir %{_libdir}/openbabel/%{version}
+%attr(755,root,root) %{_libdir}/openbabel/%{version}/*.so
 %{_datadir}/openbabel
-%{_mandir}/man1/*.1*
+%{_mandir}/man1/babel.1*
+%{_mandir}/man1/obchiral.1*
+%{_mandir}/man1/obconformer.1*
+%{_mandir}/man1/obenergy.1*
+%{_mandir}/man1/obfit.1*
+%{_mandir}/man1/obgen.1*
+%{_mandir}/man1/obgrep.1*
+%{_mandir}/man1/obminimize.1*
+%{_mandir}/man1/obprobe.1*
+%{_mandir}/man1/obprop.1*
+%{_mandir}/man1/obrotamer.1*
+%{_mandir}/man1/obrotate.1*
+%{_mandir}/man1/roundtrip.1*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libinchi.so
 %attr(755,root,root) %{_libdir}/libopenbabel.so
-%{_libdir}/libopenbabel.la
-%{_includedir}/inchi102
+%{_libdir}/openbabel/OpenBabel2*.cmake
+%{_includedir}/inchi
 %{_includedir}/openbabel-2.0
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/openbabel-2.0.pc
 
-%files static
+%files -n perl-Chemistry-OpenBabel
 %defattr(644,root,root,755)
-%{_libdir}/libopenbabel.a
+%{perl_vendorarch}/Chemistry/OpenBabel.pm
+%dir %{perl_vendorarch}/auto/Chemistry/OpenBabel
+%{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.so
