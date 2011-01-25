@@ -20,6 +20,8 @@ BuildRequires:	eigen >= 2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
 BuildRequires:	perl-devel
+BuildRequires:	rpm-perlprov
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.577
 #BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
@@ -64,6 +66,18 @@ Perl binding for OpenBabel.
 %description -n perl-Chemistry-OpenBabel -l pl.UTF-8
 Wiązanie Perla do biblioteki OpenBabel.
 
+%package -n python-openbabel
+Summary:	Python binding for OpenBabel
+Summary(pl.UTF-8):	Wiązanie Pythona do biblioteki OpenBabel
+Group:		Libraries/Python
+Requires:	%{name} = %{version}-%{release}
+
+%description -n python-openbabel
+Python binding for OpenBabel.
+
+%description -n python-openbabel -l pl.UTF-8
+Wiązanie Pythona do biblioteki OpenBabel.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -74,6 +88,7 @@ Wiązanie Perla do biblioteki OpenBabel.
 %build
 %cmake . \
 	-DALL_BINDINGS=ON \
+	-DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
 	-DwxWIDGETS_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
@@ -83,6 +98,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -145,3 +162,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorarch}/auto/Chemistry/OpenBabel
 %{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.so
+
+%files -n python-openbabel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py_sitedir}/_openbabel.so
+%{py_sitedir}/openbabel.py[co]
+%{py_sitedir}/openbabel-1.6-py*.egg-info
