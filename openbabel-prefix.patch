@@ -1,0 +1,45 @@
+--- openbabel-2.3.0/CMakeLists.txt.orig	2010-10-23 00:05:07.000000000 +0200
++++ openbabel-2.3.0/CMakeLists.txt	2011-01-24 17:39:04.922359941 +0100
+@@ -45,17 +45,17 @@
+   CACHE PATH "Install dir for binaries")
+ set(LIB_SUFFIX "" CACHE STRING "Suffix of the directory name, e.g. 64 for lib64")
+ if(UNIX)
+-  set(LIB_INSTALL_DIR    "lib${LIB_SUFFIX}"
++  set(OBLIB_INSTALL_DIR    "lib${LIB_SUFFIX}"
+     CACHE PATH "Install dir for libraries")
+   if(ENABLE_VERSIONED_FORMATS)
+-    set(OB_PLUGIN_INSTALL_DIR "${LIB_INSTALL_DIR}/openbabel/${BABEL_VERSION}"
++    set(OB_PLUGIN_INSTALL_DIR "${OBLIB_INSTALL_DIR}/openbabel/${BABEL_VERSION}"
+       CACHE PATH "Install dir for plugins")
+   else()
+-    set(OB_PLUGIN_INSTALL_DIR "${LIB_INSTALL_DIR}/openbabel"
++    set(OB_PLUGIN_INSTALL_DIR "${OBLIB_INSTALL_DIR}/openbabel"
+       CACHE PATH "Install dir for plugins")
+   endif()
+ else() # Windows - bin dir = lib dir to load libraries
+-  set(LIB_INSTALL_DIR "${BIN_INSTALL_DIR}"
++  set(OBLIB_INSTALL_DIR "${BIN_INSTALL_DIR}"
+       CACHE PATH "Install dir for libraries")
+   if(MSVC)
+     set(OB_PLUGIN_INSTALL_DIR "${BIN_INSTALL_DIR}"
+@@ -321,9 +321,9 @@
+ # Some rpath handling for Linux and Mac
+ if(UNIX AND BUILD_SHARED)
+   if(APPLE)
+-    set(CMAKE_INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR})
++    set(CMAKE_INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/${OBLIB_INSTALL_DIR})
+   else()
+-    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}")
++    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${OBLIB_INSTALL_DIR}")
+     set(CMAKE_SKIP_BUILD_RPATH FALSE)
+     set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+@@ -450,7 +450,7 @@
+   "${openbabel_BINARY_DIR}/OpenBabel2ConfigVersion.cmake" @ONLY)
+ 
+ # Now to configure the installed config file.
+-set(OB_CONFIG_DIR "${LIB_INSTALL_DIR}/openbabel")
++set(OB_CONFIG_DIR "${OBLIB_INSTALL_DIR}/openbabel")
+ set(OpenBabel2_INCLUDE_DIRS "\${OpenBabel2_INSTALL_PREFIX}/${OB_INCLUDE_DIRS}")
+ set(OB_EXPORTS_FILE
+   "\${OpenBabel2_INSTALL_PREFIX}/${OB_CONFIG_DIR}/OpenBabel2_EXPORTS.cmake")

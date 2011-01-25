@@ -1,5 +1,4 @@
 # TODO:
-# - eigen2
 # - wxWidgets (cmake needs hacking to use wx-gtk2-unicode-config instead of wx-config)
 # - install+package python, ruby, java, csharp bindings
 Summary:	A cross-platform chemistry program and library designed to convert file formats
@@ -12,8 +11,12 @@ Group:		Libraries
 Source0:	http://downloads.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
 # Source0-md5:	effda01ed4a31d18d8e3d08191799608
 Patch0:		%{name}-ruby.patch
+Patch1:		%{name}-python.patch
+Patch2:		%{name}-prefix.patch
+Patch3:		%{name}-perl.patch
 URL:		http://openbabel.sourceforge.net/
-BuildRequires:	cmake >= 2.4.8
+BuildRequires:	cmake >= 2.6.0
+BuildRequires:	eigen >= 2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
 BuildRequires:	perl-devel
@@ -64,6 +67,9 @@ Wiązanie Perla do biblioteki OpenBabel.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %cmake . \
