@@ -167,4 +167,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/_openbabel.so
 %{py_sitedir}/openbabel.py[co]
+%{py_sitedir}/pybel.py[co]
 %{py_sitedir}/openbabel-1.6-py*.egg-info
