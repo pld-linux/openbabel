@@ -1,6 +1,6 @@
 # TODO:
 # - wxWidgets (cmake needs hacking to use wx-gtk2-unicode-config instead of wx-config)
-# - install+package python, ruby, java, csharp bindings
+# - install+package ruby, java, csharp bindings
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
