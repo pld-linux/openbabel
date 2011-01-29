@@ -1,5 +1,4 @@
 # TODO:
-# - wxWidgets (cmake needs hacking to use wx-gtk2-unicode-config instead of wx-config)
 # - install+package ruby, java, csharp bindings
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
@@ -23,8 +22,11 @@ BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.577
-#BuildRequires:	wxGTK2-devel
+BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
+#BuildRequires:	jdk
+#BuildRequires:	mono-csharp
+#BuildRequires:	ruby-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,6 +55,18 @@ Header files for OpenBabel.
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla OpenBabel.
+
+%package gui
+Summary:	OpenBabel GUI
+Summary(pl.UTF-8):	Graficzny interfejs użytkownika OpenBabel
+Group:		X11/Applications/Science
+Requires:	%{name} = %{version}-%{release}
+
+%description gui
+Graphical User Interface for OpenBabel.
+
+%description gui -l pl.UTF-8
+Graficzny interfejs użytkownika OpenBabel.
 
 %package -n perl-Chemistry-OpenBabel
 Summary:	Perl binding for OpenBabel
@@ -88,9 +102,10 @@ Wiązanie Pythona do biblioteki OpenBabel.
 %build
 %cmake . \
 	-DALL_BINDINGS=ON \
+	-DCSHARP_EXECUTABLE=/usr/bin/mcs \
 	-DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
-	-DwxWIDGETS_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
+	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
 
 %install
@@ -155,6 +170,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/inchi
 %{_includedir}/openbabel-2.0
 %{_pkgconfigdir}/openbabel-2.0.pc
+
+%files gui
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/OBGUI
 
 %files -n perl-Chemistry-OpenBabel
 %defattr(644,root,root,755)
