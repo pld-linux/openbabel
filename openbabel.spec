@@ -3,14 +3,16 @@
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.3.1
-Release:	4
+Version:	2.3.2
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
-# Source0-md5:	1f029b0add12a3b55582dc2c832b04f8
+# Source0-md5:	9b0007560d9d838b40ab4ad06daf5610
 Patch0:		%{name}-prefix.patch
 Patch1:		ruby-gcc-no-option.patch
+Patch2:		cmake-fix.patch
+Patch3:		python-build.patch
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
@@ -107,6 +109,8 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p0
 
 %build
 %cmake . \
@@ -125,6 +129,10 @@ rm -rf $RPM_BUILD_ROOT
 	RUBYARCHDIR=$RPM_BUILD_ROOT%{ruby_vendorarchdir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/*.py $RPM_BUILD_ROOT%{py_sitedir}
+
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
 
 %clean
@@ -172,6 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/obprop.1*
 %{_mandir}/man1/obrotamer.1*
 %{_mandir}/man1/obrotate.1*
+%{_mandir}/man1/obspectrophore.1*
 %{_mandir}/man1/roundtrip.1*
 
 %files devel
@@ -186,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %files gui
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/obgui
-%{_mandir}/man1/OBGUI.1*
+%{_mandir}/man1/obgui.1*
 
 %files -n perl-Chemistry-OpenBabel
 %defattr(644,root,root,755)
