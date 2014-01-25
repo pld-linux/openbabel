@@ -1,9 +1,9 @@
 # TODO:
-# - install+package java, csharp bindings
+# - install+package csharp bindings
 #
 # Conditional build:
 %bcond_without	java	# Java/JNI bindings
-%bcond_without	mono	# .NET/C# bindings
+%bcond_with	mono	# .NET/C# bindings
 #
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
