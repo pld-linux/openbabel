@@ -1,5 +1,10 @@
 # TODO:
 # - install+package java, csharp bindings
+#
+# Conditional build:
+%bcond_without	java	# Java/JNI bindings
+%bcond_without	mono	# .NET/C# bindings
+#
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
@@ -16,18 +21,19 @@ Patch3:		python-build.patch
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
-BuildRequires:	eigen >= 2
+BuildRequires:	eigen3 >= 3
+%{?with_java:BuildRequires:	jdk}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
+%{?with_mono:BuildRequires:	mono-csharp}
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.577
 BuildRequires:	ruby-devel
+BuildRequires:	swig >= 2.0
 BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
-#BuildRequires:	jdk
-#BuildRequires:	mono-csharp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,6 +74,17 @@ Graphical User Interface for OpenBabel.
 
 %description gui -l pl.UTF-8
 Graficzny interfejs użytkownika OpenBabel.
+
+%package -n java-openbabel
+Summary:	Java binding for OpenBabel
+Summary(pl.UTF-8):	Wiązanie Javy do biblioteki OpenBabel
+Group:		Libraries/Java
+
+%description -n java-openbabel
+Java binding for OpenBabel.
+
+%description -n java-openbabel -l pl.UTF-8
+Wiązanie Javy do biblioteki OpenBabel.
 
 %package -n perl-Chemistry-OpenBabel
 Summary:	Perl binding for OpenBabel
@@ -114,11 +131,15 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 
 %build
 %cmake . \
-	-DALL_BINDINGS=ON \
+	%{?with_mono:-DCSHARP_BINDINGS=ON} \
 	-DCSHARP_EXECUTABLE=/usr/bin/mcs \
 	-DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
+	%{?with_java:-DJAVA_BINDINGS=ON} \
 	-DOBPERL_INSTALLDIRS="vendor" \
+	-DPERL_BINDINGS=ON \
+	-DPYTHON_BINDINGS=ON \
+	-DRUBY_BINDINGS=ON \
 	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
 
@@ -134,6 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
+
+%if %{with java}
+install -d $RPM_BUILD_ROOT%{_javadir}
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/*.jar $RPM_BUILD_ROOT%{_javadir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -155,6 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/obminimize
 %attr(755,root,root) %{_bindir}/obprobe
 %attr(755,root,root) %{_bindir}/obprop
+%attr(755,root,root) %{_bindir}/obrms
 %attr(755,root,root) %{_bindir}/obrotamer
 %attr(755,root,root) %{_bindir}/obrotate
 %attr(755,root,root) %{_bindir}/obspectrophore
@@ -196,6 +223,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/obgui
 %{_mandir}/man1/obgui.1*
+
+%if %{with java}
+%files -n java-openbabel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libopenbabel_java.so
+%{_javadir}/openbabel.jar
+%endif
 
 %files -n perl-Chemistry-OpenBabel
 %defattr(644,root,root,755)
