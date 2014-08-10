@@ -22,6 +22,7 @@ URL:		http://openbabel.sourceforge.net/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	eigen3 >= 3
+BuildRequires:	inchi-devel >= 1.0.3
 %{?with_java:BuildRequires:	jdk}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.6.5
@@ -140,6 +141,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 	-DPERL_BINDINGS=ON \
 	-DPYTHON_BINDINGS=ON \
 	-DRUBY_BINDINGS=ON \
+	-DOPENBABEL_USE_SYSTEM_INCHI=true \
 	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
 
