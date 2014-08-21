@@ -142,7 +142,9 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 	-DPYTHON_BINDINGS=ON \
 	-DRUBY_BINDINGS=ON \
 	-DOPENBABEL_USE_SYSTEM_INCHI=true \
-	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
+	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config \
+	-DLIB_INSTALL_DIR=%{_libdir} \
+	-DBIN_INSTALL_DIR=%{_bindir}
 %{__make}
 
 %install
@@ -188,8 +190,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/obrotate
 %attr(755,root,root) %{_bindir}/obspectrophore
 %attr(755,root,root) %{_bindir}/roundtrip
-%attr(755,root,root) %{_libdir}/libinchi.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libinchi.so.0
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.4
 %dir %{_libdir}/openbabel
@@ -214,9 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libinchi.so
 %attr(755,root,root) %{_libdir}/libopenbabel.so
-%{_includedir}/inchi
 %{_includedir}/openbabel-2.0
 %{_pkgconfigdir}/openbabel-2.0.pc
 %{_libdir}/cmake/openbabel2
