@@ -35,6 +35,7 @@ BuildRequires:	ruby-devel
 BuildRequires:	swig >= 2.0
 BuildRequires:	wxGTK2-devel
 BuildRequires:	zlib-devel
+Requires:	inchi-libs >= 1.0.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -132,6 +133,8 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 
 %build
 %cmake . \
+	-DBIN_INSTALL_DIR=%{_bindir} \
+	-DLIB_INSTALL_DIR=%{_lib} \
 	%{?with_mono:-DCSHARP_BINDINGS=ON} \
 	-DCSHARP_EXECUTABLE=/usr/bin/mcs \
 	-DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
@@ -141,10 +144,8 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 	-DPERL_BINDINGS=ON \
 	-DPYTHON_BINDINGS=ON \
 	-DRUBY_BINDINGS=ON \
-	-DOPENBABEL_USE_SYSTEM_INCHI=true \
-	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config \
-	-DLIB_INSTALL_DIR=%{_libdir} \
-	-DBIN_INSTALL_DIR=%{_bindir}
+	-DOPENBABEL_USE_SYSTEM_INCHI=ON \
+	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config
 %{__make}
 
 %install
