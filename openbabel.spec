@@ -236,7 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{perl_vendorarch}/Chemistry/OpenBabel.pm
 %dir %{perl_vendorarch}/auto/Chemistry/OpenBabel
-%{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Chemistry/OpenBabel/OpenBabel.so
 
 %files -n python-openbabel
