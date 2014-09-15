@@ -9,7 +9,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.3.2
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
@@ -33,7 +33,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.577
 BuildRequires:	ruby-devel
 BuildRequires:	swig >= 2.0
-BuildRequires:	wxGTK2-devel
+BuildRequires:	wxGTK2-unicode-devel
 BuildRequires:	zlib-devel
 Requires:	inchi-libs >= 1.0.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
