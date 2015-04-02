@@ -1,0 +1,10 @@
+--- openbabel-2.3.2/scripts/python/setup.py.orig	2015-04-02 19:38:00.000000000 +0000
++++ openbabel-2.3.2/scripts/python/setup.py	2015-04-02 19:39:04.000000000 +0000
+@@ -20,6 +20,7 @@ obExtension = Extension('_openbabel',
+                                os.path.join("..", "include")],
+                  library_dirs=[os.path.join(srcdir, "..", "..", "lib"),
+                                os.path.join(srcdir, "..", "..", "lib64"),
++                               os.path.join(srcdir, "..", "..", "libx32"),
+                                os.path.join("..", "lib")],
+                  libraries=['openbabel']
+                  )
