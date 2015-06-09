@@ -9,7 +9,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.3.2
-Release:	5
+Release:	6
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/openbabel/%{name}-%{version}.tar.gz
