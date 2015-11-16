@@ -1,0 +1,15 @@
+--- openbabel-2.3.90/scripts/CMakeLists.txt~	2015-09-22 12:38:01.000000000 +0200
++++ openbabel-2.3.90/scripts/CMakeLists.txt	2015-11-16 19:52:13.511619342 +0100
+@@ -338,10 +338,10 @@
+     endif()
+ 
+     install(TARGETS bindings_perl
+-            LIBRARY DESTINATION ${LIB_INSTALL_DIR}/auto/Chemistry/OpenBabel/
++	    LIBRARY DESTINATION ${PERLLIB_INSTALL_DIR}/auto/Chemistry/OpenBabel/
+             COMPONENT bindings_perl)
+     install(FILES ${openbabel_SOURCE_DIR}/scripts/perl/OpenBabel.pm
+-            DESTINATION ${LIB_INSTALL_DIR}/Chemistry/
++	    DESTINATION ${PERLLIB_INSTALL_DIR}/Chemistry/
+             COMPONENT bindings_perl)
+ 
+ endif (DO_PERL_BINDINGS)

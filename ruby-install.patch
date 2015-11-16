@@ -1,0 +1,11 @@
+--- openbabel-2.3.90/scripts/CMakeLists.txt~	2015-11-16 19:52:13.000000000 +0100
++++ openbabel-2.3.90/scripts/CMakeLists.txt	2015-11-16 19:53:09.209431072 +0100
+@@ -400,7 +400,7 @@
+     endif()
+ 
+     install(TARGETS bindings_ruby
+-            LIBRARY DESTINATION ${LIB_INSTALL_DIR}
++	    LIBRARY DESTINATION ${RUBYLIB_INSTALL_DIR}
+             COMPONENT bindings_ruby)
+ 
+ endif (DO_RUBY_BINDINGS)
