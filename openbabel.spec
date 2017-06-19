@@ -5,21 +5,21 @@
 %bcond_without	java	# Java/JNI bindings
 %bcond_with	mono	# .NET/C# bindings
 #
-%define	snap	2d45874
+%define	gitver	openbabel-2-4-1
 Summary:	A cross-platform chemistry program and library designed to convert file formats
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
-Version:	2.3.90
-Release:	7
+Version:	2.4.1
+Release:	1
 License:	GPL v2
 Group:		Libraries
-Source0:	https://github.com/openbabel/openbabel/archive/%{snap}/%{name}-%{version}-%{snap}.tar.gz
-# Source0-md5:	32f083d63a0a17f1871a831edad3a912
+Source0:	https://github.com/openbabel/openbabel/archive/%{gitver}/%{name}-%{version}.tar.gz
+# Source0-md5:	c0e0aefeef0f9f2bb2c78109d65c30a5
 Patch0:		%{name}-prefix.patch
 Patch1:		perl-x32.patch
 Patch2:		perl-install.patch
 Patch3:		ruby-install.patch
-Patch4:		swig-java.patch
+Patch4:		gcc6.patch
 Patch5:		plugindir.patch
 URL:		http://openbabel.sourceforge.net/
 BuildRequires:	cairo-devel
@@ -129,7 +129,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 
 %prep
 %setup -q -c
-%{__mv} %{name}-%{snap}*/* ./
+%{__mv} %{name}-%{gitver}*/* ./
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -204,7 +204,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/obthermo
 %attr(755,root,root) %{_bindir}/roundtrip
 %attr(755,root,root) %{_libdir}/libopenbabel.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.4
+%attr(755,root,root) %ghost %{_libdir}/libopenbabel.so.5
 %dir %{_libdir}/openbabel
 %dir %{_libdir}/openbabel/%{version}
 %attr(755,root,root) %{_libdir}/openbabel/%{version}/*.so
