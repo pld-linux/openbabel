@@ -13,6 +13,7 @@ Version:	2.4.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
+#Source0Download: https://github.com/openbabel/openbabel/releases
 Source0:	https://github.com/openbabel/openbabel/archive/%{gitver}/%{name}-%{version}.tar.gz
 # Source0-md5:	c0e0aefeef0f9f2bb2c78109d65c30a5
 Patch0:		%{name}-prefix.patch
@@ -21,7 +22,7 @@ Patch2:		perl-install.patch
 Patch3:		ruby-install.patch
 Patch4:		gcc6.patch
 Patch5:		plugindir.patch
-URL:		http://openbabel.sourceforge.net/
+URL:		http://openbabel.org/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	eigen3 >= 3
@@ -128,8 +129,7 @@ Ruby binding for OpenBabel.
 Wiązanie języka Ruby do biblioteki OpenBabel.
 
 %prep
-%setup -q -c
-%{__mv} %{name}-%{gitver}*/* ./
+%setup -q -n %{name}-%{gitver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
