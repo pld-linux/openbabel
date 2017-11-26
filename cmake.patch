@@ -1,0 +1,20 @@
+--- openbabel-openbabel-2-4-1/CMakeLists.txt~	2017-11-26 13:31:50.000000000 +0100
++++ openbabel-openbabel-2-4-1/CMakeLists.txt	2017-11-26 13:55:19.329246765 +0100
+@@ -20,7 +20,6 @@
+ endif()
+ 
+ include (CheckCXXCompilerFlag)
+-include (MacroEnsureVersion)
+ 
+ # Version numbering - should be bumped for each release
+ # Note that for "beta" releases, we should start at x.90.0 -- we've
+@@ -245,9 +244,6 @@
+   if (NOT _gcc_version)
+     string (REGEX REPLACE ".*\\(GCC\\).* ([34]\\.[0-9]) .*" "\\1.0" _gcc_version "${_gcc_version_info}")
+   endif ()
+-  macro_ensure_version("4.0.0" "${_gcc_version}" GCC_IS_NEWER_THAN_4_0)
+-  macro_ensure_version("4.1.0" "${_gcc_version}" GCC_IS_NEWER_THAN_4_1)
+-  macro_ensure_version("4.2.0" "${_gcc_version}" GCC_IS_NEWER_THAN_4_2)
+ endif()
+ 
+ if(UNIX)

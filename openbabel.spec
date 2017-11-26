@@ -10,7 +10,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.4.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 #Source0Download: https://github.com/openbabel/openbabel/releases
@@ -22,6 +22,7 @@ Patch2:		perl-install.patch
 Patch3:		ruby-install.patch
 Patch4:		gcc6.patch
 Patch5:		plugindir.patch
+Patch6:		cmake.patch
 URL:		http://openbabel.org/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
@@ -136,6 +137,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 %cmake . \
