@@ -36,7 +36,7 @@ BuildRequires:	libxml2-devel >= 2.6.5
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.577
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	ruby-devel
 BuildRequires:	swig >= 2.0
 BuildRequires:	wxGTK2-unicode-devel
