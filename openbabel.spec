@@ -23,6 +23,7 @@ Patch3:		ruby-install.patch
 Patch4:		gcc6.patch
 Patch5:		plugindir.patch
 Patch6:		cmake.patch
+Patch7:		gcc12.patch
 URL:		http://openbabel.org/
 BuildRequires:	cairo-devel
 BuildRequires:	cmake >= 2.6.0
@@ -138,6 +139,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 %cmake . \

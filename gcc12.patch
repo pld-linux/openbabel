@@ -1,0 +1,10 @@
+--- openbabel-openbabel-2-4-1/include/openbabel/obutil.h.orig	2016-10-10 17:56:17.000000000 +0200
++++ openbabel-openbabel-2-4-1/include/openbabel/obutil.h	2023-07-07 10:56:44.846548563 +0200
+@@ -22,6 +22,7 @@
+ 
+ #include <openbabel/babelconfig.h>
+ 
++#include <ctime>
+ #include <string>
+ #include <iosfwd>
+ 
