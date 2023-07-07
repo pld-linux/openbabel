@@ -34,6 +34,8 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 1:2.6.5
 %{?with_mono:BuildRequires:	mono-csharp}
 BuildRequires:	perl-devel
+BuildRequires:	python
+BuildRequires:	python-modules
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.605
