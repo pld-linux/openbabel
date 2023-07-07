@@ -31,7 +31,7 @@ BuildRequires:	eigen3 >= 3
 BuildRequires:	inchi-devel >= 1.0.3
 %{?with_java:BuildRequires:	jdk}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libxml2-devel >= 2.6.5
+BuildRequires:	libxml2-devel >= 1:2.6.5
 %{?with_mono:BuildRequires:	mono-csharp}
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov
