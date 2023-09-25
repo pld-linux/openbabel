@@ -10,7 +10,7 @@ Summary:	A cross-platform chemistry program and library designed to convert file
 Summary(pl.UTF-8):	Międzyplatformowy program chemiczny i biblioteka do konwersji formatów plików
 Name:		openbabel
 Version:	2.4.1
-Release:	11
+Release:	12
 License:	GPL v2
 Group:		Libraries
 #Source0Download: https://github.com/openbabel/openbabel/releases
@@ -41,7 +41,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	ruby-devel
 BuildRequires:	swig >= 2.0
-BuildRequires:	wxGTK2-unicode-devel
+BuildRequires:	wxGTK3-unicode-devel
 BuildRequires:	zlib-devel
 Requires:	inchi-libs >= 1.0.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -158,7 +158,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 	-DRUBY_BINDINGS=ON \
 	-DRUN_SWIG=ON \
 	-DOPENBABEL_USE_SYSTEM_INCHI=ON \
-	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk2-unicode-config \
+	-DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-gtk3-unicode-config \
 	-DPERLLIB_INSTALL_DIR=%{perl_vendorarch} \
 	-DRUBYLIB_INSTALL_DIR=%{ruby_vendorarchdir}
 %{__make}
