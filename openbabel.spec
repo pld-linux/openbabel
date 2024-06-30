@@ -155,6 +155,7 @@ Wiązanie języka Ruby do biblioteki OpenBabel.
 	-DOBPERL_INSTALLDIRS="vendor" \
 	-DPERL_BINDINGS=ON \
 	-DPYTHON_BINDINGS=ON \
+	-DPYTHON_EXECUTABLE:PATH="%{__python}" \
 	-DRUBY_BINDINGS=ON \
 	-DRUN_SWIG=ON \
 	-DOPENBABEL_USE_SYSTEM_INCHI=ON \
